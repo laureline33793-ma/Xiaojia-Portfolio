@@ -1,11 +1,13 @@
 /**
  * Recent Works — per-card scroll reveal; frame then scene rises from bottom.
+ * Real iOS Safari can fail clip-path + IntersectionObserver, so touch devices skip the animation.
  */
 (function workReveal() {
   const feed = document.querySelector(".works-feed");
   if (!feed) return;
 
   const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isCoarseTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
   const cards = [...feed.querySelectorAll(".work-card")];
   const chrome = [...feed.querySelectorAll(
     ".works-feed__title, .works-feed__mascot, .works-filters, .works-feed__footer"
@@ -27,9 +29,17 @@
 
   function revealCard(card) {
     if (!shouldAnimate(card)) return;
+    if (card.classList.contains("is-visible")) {
+      finishCardReveal(card);
+      return;
+    }
     card.classList.add("is-visible");
     const scene = card.querySelector(".work-card__scene");
     if (!scene) {
+      finishCardReveal(card);
+      return;
+    }
+    if (isCoarseTouch || prefersReduced) {
       finishCardReveal(card);
       return;
     }
@@ -42,45 +52,86 @@
     window.setTimeout(() => finishCardReveal(card), 2000);
   }
 
-  if (prefersReduced) {
-    feed.querySelectorAll(".works-reveal").forEach(revealEl);
-    return;
+  function revealAll() {
+    chrome.forEach(revealEl);
+    cards.forEach(revealCard);
   }
 
-  const cardObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const card = entry.target;
-        if (card.classList.contains("is-visible")) return;
-        revealCard(card);
-      });
-    },
-    { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
-  );
+  function elementInViewport(el) {
+    const rect = el.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    return rect.bottom > 0 && rect.top < vh * 0.96;
+  }
 
-  const chromeObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        revealEl(entry.target);
-        chromeObserver.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.12, rootMargin: "0px 0px -5% 0px" }
-  );
+  function revealInViewport() {
+    chrome.forEach((el) => {
+      if (el.classList.contains("is-visible")) return;
+      if (elementInViewport(el)) revealEl(el);
+    });
+    cards.forEach((card) => {
+      if (card.classList.contains("is-visible")) return;
+      if (elementInViewport(card)) revealCard(card);
+    });
+  }
 
-  cards.forEach((card) => {
-    card.classList.add("works-reveal", "is-reveal-pending");
-    cardObserver.observe(card);
-  });
+  function promoteMediaLoading() {
+    if (!isCoarseTouch) return;
+    feed.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+      img.loading = "eager";
+    });
+    feed.querySelectorAll("video[preload='metadata']").forEach((video) => {
+      video.preload = "auto";
+    });
+  }
 
-  chrome.forEach((el) => {
-    if (!el.classList.contains("works-reveal")) {
-      el.classList.add("works-reveal", "is-reveal-pending");
-    }
-    chromeObserver.observe(el);
-  });
+  if (prefersReduced || isCoarseTouch) {
+    cards.forEach((card) => {
+      card.classList.add("works-reveal", "is-visible", "is-reveal-done");
+    });
+    chrome.forEach((el) => {
+      el.classList.add("works-reveal", "is-visible");
+    });
+    promoteMediaLoading();
+  } else {
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const card = entry.target;
+          if (card.classList.contains("is-visible")) return;
+          revealCard(card);
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -4% 0px" }
+    );
+
+    const chromeObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          revealEl(entry.target);
+          chromeObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -3% 0px" }
+    );
+
+    cards.forEach((card) => {
+      card.classList.add("works-reveal", "is-reveal-pending");
+      cardObserver.observe(card);
+    });
+
+    chrome.forEach((el) => {
+      if (!el.classList.contains("works-reveal")) {
+        el.classList.add("works-reveal", "is-reveal-pending");
+      }
+      chromeObserver.observe(el);
+    });
+
+    window.addEventListener("scroll", revealInViewport, { passive: true });
+    window.setTimeout(revealInViewport, 120);
+    window.setTimeout(revealInViewport, 800);
+  }
 
   function scrollToWorksSection(behavior = "instant") {
     const works = document.getElementById("works");
@@ -91,6 +142,8 @@
     works.scrollIntoView({ block: "start", behavior });
     root.style.scrollBehavior = prev;
     history.replaceState(null, "", `${window.location.pathname}${window.location.search}#works`);
+    window.setTimeout(revealInViewport, 80);
+    window.setTimeout(revealInViewport, 400);
   }
 
   if (window.location.hash === "#works") {
@@ -119,5 +172,4 @@
         scrollToWorksSection(behavior);
       });
     });
-
 })();

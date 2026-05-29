@@ -642,6 +642,19 @@
   }
 }
 
+/* Real phones: clip-path reveal can leave Works blank on iOS Safari (DevTools won't show this). */
+@media (hover: none) and (pointer: coarse) {
+  .works-reveal.is-reveal-pending .work-card__frame,
+  .works-reveal.is-reveal-pending .work-card__scene,
+  .works-reveal.is-reveal-pending .work-card__foot,
+  .works-reveal.is-reveal-pending:not(.work-card) {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+    transition: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .works-reveal.is-reveal-pending .work-card__frame,
   .works-reveal.is-reveal-pending .work-card__scene,
