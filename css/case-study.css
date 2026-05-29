@@ -105,18 +105,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: clamp(14rem, 42vw, 24rem);
+  min-height: clamp(16rem, 50vw, 28rem);
   border-radius: var(--case-radius);
   background-color: #faf7f5;
+  margin-top: clamp(1rem, 3vw, 1.75rem);
   margin-bottom: var(--case-section-gap);
 }
 
 .case-coming-soon__label {
   margin: 0;
   font-family: var(--font);
-  font-size: clamp(2.5rem, 12vw, 78px);
+  font-size: clamp(2.75rem, 14vw, 78px);
   font-weight: 900;
-  line-height: 1;
+  line-height: 1.05;
   letter-spacing: -0.02em;
   color: #615c59;
   text-align: center;

@@ -241,6 +241,7 @@ a {
 /* —— Hero —— */
 .hero {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -921,6 +922,8 @@ a {
     --hero-banner-min-h: 0px;
     --hero-height-cap: 74dvh;
     --hero-banner-pad-y: clamp(1.75rem, 4vh, 2.5rem);
+    --hero-group-shift-y: 28px;
+    --hero-mobile-extra-pad: 20px;
   }
 
   .logo img {
@@ -943,12 +946,13 @@ a {
 
   .hero {
     box-sizing: border-box;
-    height: calc(100svh - var(--header-height));
-    min-height: calc(100svh - var(--header-height));
-    max-height: calc(100svh - var(--header-height));
-    padding-top: clamp(2rem, 4.5vh, 2.75rem);
-    padding-bottom: clamp(2rem, 5vh, 3rem);
-    overflow: hidden;
+    height: auto;
+    min-height: auto;
+    max-height: none;
+    padding-top: calc(clamp(1rem, 2.5vh, 1.5rem) + var(--hero-mobile-extra-pad));
+    padding-bottom: calc(clamp(1.25rem, 3.5vh, 1.75rem) + var(--hero-mobile-extra-pad));
+    overflow-x: clip;
+    overflow-y: visible;
     align-items: flex-start;
   }
 
@@ -958,24 +962,24 @@ a {
     flex: 1 1 auto;
     width: 100%;
     min-height: 0;
-    max-height: 100%;
-    overflow: hidden;
+    max-height: none;
+    overflow: visible;
   }
 
   .hero-stage {
     max-width: none;
     padding-inline: 0;
     min-height: 0;
-    max-height: 100%;
-    overflow: hidden;
+    max-height: none;
+    overflow: visible;
   }
 
   .hero-stack {
     align-items: flex-start;
     text-align: left;
     min-height: 0;
-    max-height: 100%;
-    overflow: hidden;
+    max-height: none;
+    overflow: visible;
   }
 
   .hero-title {
@@ -985,7 +989,7 @@ a {
 
   .title-flower--orange {
     left: 0.02em;
-    z-index: -1;
+    z-index: 2;
   }
 
   .hero-title__line {
@@ -1051,8 +1055,7 @@ a {
   .hero-content,
   .hero-stage,
   .hero-stack {
-    overflow-x: clip;
-    overflow-y: hidden;
+    overflow: visible;
   }
 
   .hero-title-block {
@@ -1060,7 +1063,7 @@ a {
   }
 
   .spline-face__frame {
-    overflow: hidden;
+    overflow: visible;
   }
 
   .hero-hands {
@@ -1130,6 +1133,7 @@ a {
   .hero-decor--live .title-flower {
     visibility: visible;
     opacity: 0;
+    z-index: 4;
     pointer-events: auto;
     touch-action: manipulation;
     animation-name: hero-flower-fade-in, hero-flower-spin;

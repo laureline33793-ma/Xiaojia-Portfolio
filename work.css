@@ -9,6 +9,8 @@
   --ar-wide: 870 / 618;
   --reveal-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --reveal-ease-soft: cubic-bezier(0.22, 0.95, 0.28, 1);
+  position: relative;
+  z-index: 2;
   width: 100%;
   max-width: 1440px;
   margin-inline: auto;
@@ -596,7 +598,7 @@
   .works-feed {
     --works-cols: 2;
     --works-gap: 0.75rem;
-    padding-top: clamp(3rem, 8vw, 4.5rem);
+    padding-top: calc(clamp(1.75rem, 5vw, 2.5rem) + 20px);
   }
 
   .work-card--wide {
