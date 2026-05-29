@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xiaojia Lu — Communication Designer</title>
+    <script>
+      (function () {
+        if ("scrollRestoration" in history) {
+          history.scrollRestoration = "manual";
+        }
+        function isPageReload() {
+          try {
+            var nav = performance.getEntriesByType("navigation")[0];
+            return nav && nav.type === "reload";
+          } catch (e) {
+            return performance.navigation && performance.navigation.type === 1;
+          }
+        }
+        function scrollToHero() {
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        }
+        if (isPageReload()) {
+          if (location.hash) {
+            history.replaceState(null, "", location.pathname + location.search);
+          }
+          scrollToHero();
+          document.addEventListener("DOMContentLoaded", scrollToHero);
+          window.addEventListener("load", scrollToHero);
+          window.addEventListener("pageshow", function () {
+            if (isPageReload()) {
+              scrollToHero();
+            }
+          });
+        } else if (location.hash === "#works") {
+          document.documentElement.style.scrollBehavior = "auto";
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="css/styles.css?v=206" />
+    <link rel="stylesheet" href="css/work.css?v=31" />
+    <link rel="stylesheet" href="css/about.css?v=41" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="index.html" class="logo" aria-label="Home">
+        <img src="assets/XJ logo.png" alt="Xi" width="44" height="35" />
+      </a>
+      <div class="header-meta">
+        <span class="header-role">Communication Designer</span>
+        <span class="header-location">Based in Vancouver, Canada</span>
+      </div>
+      <nav class="site-nav" aria-label="Main">
+        <a href="index.html" class="roll-link is-active" aria-current="page">
+          <span class="roll-link__slice">
+            <span class="roll-link__line">Home</span>
+            <span class="roll-link__line" aria-hidden="true">Home</span>
+          </span>
+        </a>
+        <a href="index.html#works" class="roll-link">
+          <span class="roll-link__slice">
+            <span class="roll-link__line">Work</span>
+            <span class="roll-link__line" aria-hidden="true">Work</span>
+          </span>
+        </a>
+        <a href="about.html" class="roll-link">
+          <span class="roll-link__slice">
+            <span class="roll-link__line">About</span>
+            <span class="roll-link__line" aria-hidden="true">About</span>
+          </span>
+        </a>
+        <a href="#contact" class="roll-link">
+          <span class="roll-link__slice">
+            <span class="roll-link__line">Contact</span>
+            <span class="roll-link__line" aria-hidden="true">Contact</span>
+          </span>
+        </a>
+      </nav>
+    </header>
+
+    <main class="home-page">
+    <section class="hero" aria-label="Introduction">
+      <div class="hero-content">
+        <div class="hero-stage">
+          <div class="hero-stack">
+        <!-- Spline: replace #spline-face with your embed; img is the static fallback -->
+        <div id="spline-face" class="spline-face" aria-hidden="true">
+          <img
+            class="spline-face__placeholder"
+            src="assets/smile face.png"
+            alt=""
+          />
+        </div>
+
+        <div class="hero-title-block">
+          <h1 class="hero-title">
+            <span class="hero-title__line"
+              ><span class="hero-title__anchor hero-title__anchor--h"
+                ><span class="hero-title__letter">H</span></span
+              >i, <span class="hero-title__letter hero-title__letter--align-i"
+                >I</span
+              > a<span class="hero-title__anchor hero-title__anchor--m"
+                ><span class="hero-title__letter">m</span
+                ><img
+                  class="title-flower title-flower--pink"
+                  src="assets/pink flower.png"
+                  alt=""
+              /></span
+            ></span>
+            <span class="hero-title__name"
+              ><span class="hero-title__anchor hero-title__anchor--x"
+                ><img
+                  class="title-flower title-flower--orange"
+                  src="assets/Orange flower.png"
+                  alt=""
+                /><span class="hero-title__letter">X</span></span
+              >iaoj<span class="hero-title__anchor hero-title__anchor--a"
+                ><img
+                  class="title-flower title-flower--yellow"
+                  src="assets/Yellow flower.png"
+                  alt=""
+                /><span class="hero-title__letter">a</span></span
+              ></span
+            >
+          </h1>
+        </div>
+        <p class="hero-subtitle">
+          I am a communication designer who solves problems in print or digital
+          form
+        </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-hands" aria-hidden="true">
+        <div class="hand-slot hand-slot--left">
+          <img
+            class="decor-hand decor-hand--left"
+            src="assets/hand-left-long.png"
+            alt=""
+          />
+        </div>
+        <div class="hand-slot hand-slot--right">
+          <img
+            class="decor-hand decor-hand--right decor-hand--right-desktop"
+            src="assets/hand-right-long.png"
+            alt=""
+          />
+          <img
+            class="decor-hand decor-hand--right decor-hand--right-mobile"
+            src="assets/hand-right-mobile.png"
+            alt=""
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="works-feed" id="works" aria-label="Recent Works">
+      <div class="works-feed__head">
+        <h2
+          class="works-feed__title works-reveal is-reveal-pending"
+          style="--reveal-stagger: 0"
+        >
+          Recent Works
+        </h2>
+        <img
+          class="works-feed__mascot works-reveal is-reveal-pending"
+          src="assets/recent-works-character.png"
+          alt=""
+          width="152"
+          height="120"
+          style="--reveal-stagger: 1"
+        />
+      </div>
+
+      <div
+        class="works-filters works-reveal is-reveal-pending"
+        role="group"
+        aria-label="Filter works by category"
+      ></div>
+
+      <div class="works-grid">
+        <!-- Row: wide + narrow — Trout Lake (video placeholder on grass bg) -->
+        <a
+          href="work/trout-lake.html"
+          class="work-card work-card--wide work-card--photo work-card--trout-lake works-reveal is-reveal-pending"
+          style="--work-tone: #3d6b45; --reveal-stagger: 0"
+          data-work-id="trout-lake"
+          data-tags="Branding,Illustration,UI/UX,Print"
+        >
+          <div class="work-card__frame">
+            <div class="work-card__scene work-card__scene--trout">
+              <img
+                class="work-card__bg work-card__bg--trout-field"
+                src="assets/works/trout-lake-bg.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="work-card__trout-ui">
+                <video
+                  class="work-card__bg-video work-card__bg-video--trout"
+                  src="assets/works/videos/trout-lake.mp4"
+                  loop
+                  muted
+                  playsinline
+                  webkit-playsinline
+                  preload="metadata"
+                  aria-hidden="true"
+                ></video>
+              </div>
+            </div>
+            <div class="work-card__foot">
+              <div class="work-card__tags" aria-hidden="true">
+                <span class="work-card__tag">Branding</span>
+                <span class="work-card__tag">Illustration</span>
+                <span class="work-card__tag">UI/UX</span>
+                <span class="work-card__tag">Print</span>
+              </div>
+              <span class="work-card__title"
+                ><span class="work-card__title-text">Trout Lake Rebranding</span>
+                <svg class="work-card__title-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M5 12h14M14 8l5 4-5 4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    fill="none"
+                  />
+                </svg></span
+              >
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="work/osheaga.html"
+          class="work-card work-card--narrow work-card--photo works-reveal is-reveal-pending"
+          style="--work-tone: #5c2018; --reveal-stagger: 1"
+          data-work-id="osheaga"
+          data-tags="UI/UX,Branding,Illustration,Print"
+        >
+          <div class="work-card__frame">
+            <div class="work-card__scene">
+              <img
+                class="work-card__bg"
+                src="assets/works/osheaga-bg.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                class="work-card__logo"
+                src="assets/works/osheaga-logo.png"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="work-card__foot">
+              <div class="work-card__tags" aria-hidden="true">
+                <span class="work-card__tag">UI/UX</span>
+                <span class="work-card__tag">Branding</span>
+                <span class="work-card__tag">Illustration</span>
+                <span class="work-card__tag">Print</span>
+              </div>
+              <span class="work-card__title"
+                ><span class="work-card__title-text">Osheaga Music Festival</span>
+                <svg class="work-card__title-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M5 12h14M14 8l5 4-5 4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    fill="none"
+                  />
+                </svg></span
+              >
+            </div>
+          </div>
+        </a>
+
+        <!-- Row: 3 narrow -->
+        <a
+          href="#"
+          class="work-card work-card--narrow works-reveal is-reveal-pending"
+          style="--work-tone: #bed7ef; --reveal-stagger: 2"
+          data-work-id="deeper-well"
+          data-tags="Illustration,Print"
+        >
+          <div class="work-card__frame">
+            <div class="work-card__scene work-card__scene--art">
+              <img
+                class="work-card__art work-card__art--cd"
+                src="assets/works/deeper-well-cd.png?v=10"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="work-card__foot">
+              <div class="work-card__tags" aria-hidden="true">
+                <span class="work-card__tag">Illustration</span>
+                <span class="work-card__tag">Print</span>
+              </div>
+              <span class="work-card__title"
+                ><span class="work-card__title-text">Deeper into the Well CD</span>
+                <svg class="work-card__title-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M5 12h14M14 8l5 4-5 4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    fill="none"
+                  />
+                </svg></span
+              >
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="#"
+          class="work-card work-card--narrow work-card--photo works-reveal is-reveal-pending"
+          style="--work-tone: #161514; --reveal-stagger: 3"
+          data-work-id="eastside-festival"
+          data-tags="Motion Graphic,Illustration,Campaign"
+        >
+          <div class="work-card__frame">
+            <div class="work-card__scene work-card__scene--video-inset">
+              <video
+                class="work-card__bg-video work-card__bg-video--inset"
+                src="assets/works/videos/festival.mp4"
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                aria-hidden="true"
+              ></video>
+            </div>
+            <div class="work-card__foot">
+              <div class="work-card__tags" aria-hidden="true">
+                <span class="work-card__tag">Motion Graphic</span>
+                <span class="work-card__tag">Illustration</span>
+                <span class="work-card__tag">Campaign</span>
+              </div>
+              <span class="work-card__title"
+                ><span class="work-card__title-text">Eastside Festival</span>
+                <svg class="work-card__title-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M5 12h14M14 8l5 4-5 4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    fill="none"
+                  />
+                </svg></span
+              >
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="#"
+          class="work-card work-card--narrow work-card--photo works-reveal is-reveal-pending"
+          style="--work-tone: #c8e4a8; --reveal-stagger: 4"
+          data-work-id="winn-dixie"
+          data-tags="Motion Graphic,Play"
+        >
+          <div class="work-card__frame">
+            <div class="work-card__scene work-card__scene--video-inset">
+              <video
+                class="work-card__bg-video work-card__bg-video--inset"
+                src="assets/works/videos/eastside.mp4"
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                aria-hidden="true"
+              ></video>
+            </div>
+            <div class="work-card__foot">
+              <div class="work-card__tags" aria-hidden="true">
+                <span class="work-card__tag">Motion Graphic</span>
+                <span class="work-card__tag">Play</span>
+              </div>
+              <span class="work-card__title"
+                ><span class="work-card__title-text">Winn-Dixie Stop Motion</span>
+                <svg class="work-card__title-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M5 12h14M14 8l5 4-5 4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    fill="none"
+                  />
+                </svg></span
+              >
+            </div>
+          </div>
+        </a>
+
+        <!-- Row: wide then narrow — wide first avoids a mid-grid hole on 2-col mobile -->
+        <a
+          href="#"
+          class="work-card work-card--wide work-card--photo works-reveal is-reveal-pending"
+          style="--work-tone: #2d2448; --reveal-stagger: 5"
+          data-work-id="dream-exhibition"
+          data-tags="Illustration,Play"
+        >
+          <div class="work-card__frame">
+            <div class="work-card__scene work-card__scene--video-cover">
+              <video
+                class="work-card__bg-video work-card__bg-video--cover"
+                src="assets/works/videos/dream.mp4"
+                loop
+                muted
+                playsinline
+                preload="metadata"
+                aria-hidden="true"
+              ></video>
+            </div>
+            <div class="work-card__foot">
+              <div class="work-card__tags" aria-hidden="true">
+                <span class="work-card__tag">Illustration</span>
+                <span class="work-card__tag">Play</span>
+              </div>
+              <span class="work-card__title"
+                ><span class="work-card__title-text">Dream Exhibition Concept</span>
+                <svg class="work-card__title-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M5 12h14M14 8l5 4-5 4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    fill="none"
+                  />
+                </svg></span
+              >
+            </div>
+          </div>
+        </a>
+
+        <a
+          href="#"
+          class="work-card work-card--narrow works-reveal is-reveal-pending"
+          style="--work-tone: #fad9ec; --reveal-stagger: 6"
+          data-work-id="truth-dare"
+          data-tags="Illustration,Print"
+        >
+          <div class="work-card__frame">
+            <div class="work-card__scene work-card__scene--art">
+              <img
+                class="work-card__art work-card__art--cards"
+                src="assets/works/truth-dare-cards.png?v=10"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="work-card__foot">
+              <div class="work-card__tags" aria-hidden="true">
+                <span class="work-card__tag">Illustration</span>
+                <span class="work-card__tag">Print</span>
+              </div>
+              <span class="work-card__title"
+                ><span class="work-card__title-text">Truth &amp; Dare Cards for Kids</span>
+                <svg class="work-card__title-arrow" viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M5 12h14M14 8l5 4-5 4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    fill="none"
+                  />
+                </svg></span
+              >
+            </div>
+          </div>
+        </a>
+      </div>
+
+    </section>
+
+    <footer id="contact" class="site-footer about-page home-connect-tail">
+      <section
+        class="about-connect is-deco-settled"
+        aria-labelledby="home-connect-title"
+      >
+        <div class="about-connect__title-wrap">
+          <div class="about-connect-decos" aria-hidden="true">
+            <img
+              class="about-connect-deco about-connect-deco--orange"
+              src="assets/about/deco-orange.png"
+              alt=""
+              width="118"
+              height="118"
+              decoding="async"
+            />
+            <img
+              class="about-connect-deco about-connect-deco--yellow"
+              src="assets/about/deco-yellow.png"
+              alt=""
+              width="118"
+              height="118"
+              decoding="async"
+            />
+            <img
+              class="about-connect-deco about-connect-deco--star"
+              src="assets/about/deco-star-teal.png"
+              alt=""
+              width="153"
+              height="153"
+              decoding="async"
+            />
+          </div>
+          <h2 id="home-connect-title" class="about-connect__title">Let&rsquo;s Connect</h2>
+        </div>
+        <p class="about-connect__lead">
+          I&rsquo;m always looking to connect with open-minded people to explore design and
+          create together, drop me a line at
+        </p>
+        <strong class="about-connect__name">Xiaojia Lu</strong>
+        <div class="about-connect__lower">
+          <img
+            class="about-connect__mouth"
+            src="assets/about/mouth.png"
+            alt=""
+            width="136"
+            height="136"
+            decoding="async"
+            aria-hidden="true"
+          />
+          <div class="about-connect__actions">
+            <div class="about-connect__buttons">
+              <button
+                type="button"
+                class="about-connect__btn about-connect__btn--email"
+                data-copy-email
+              >
+                <span>Laureline33793@gmail.com</span>
+                <img
+                  src="assets/about/icon-copy.png"
+                  alt=""
+                  width="22"
+                  height="22"
+                  decoding="async"
+                />
+                <span class="visually-hidden">Copy email</span>
+              </button>
+              <a
+                class="about-connect__btn"
+                href="https://www.linkedin.com/in/xiaojia-lu-25a9b0411"
+                target="_blank"
+                rel="noopener noreferrer"
+                >LinkedIn</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <p class="about-footer">&copy; 2026 Xiaojia Lu. All rights reserved</p>
+    </footer>
+    </main>
+
+    <script src="js/main.js?v=177"></script>
+    <script src="js/hero-optical-center.js?v=18"></script>
+    <script src="js/hero-poke.js?v=173"></script>
+    <script src="js/hero-poke-mobile.js?v=174"></script>
+    <script src="js/hero-flower-hover.js?v=173"></script>
+    <script src="js/hero-flower-mobile.js?v=177"></script>
+    <script type="module" src="js/spline-face.js?v=187"></script>
+    <script src="js/hero-spline-mobile.js?v=189"></script>
+    <script src="js/works-catalog.js?v=3"></script>
+    <script src="js/work-reveal.js?v=13"></script>
+    <script src="js/work-feed.js?v=10"></script>
+    <script src="js/work-video.js?v=14"></script>
+    <script src="js/about-copy.js?v=1"></script>
+    <script src="js/site-contact.js?v=1"></script>
+  </body>
+</html>
